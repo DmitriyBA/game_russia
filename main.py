@@ -165,4 +165,29 @@ def check_win(game_list: list) -> bool:
   if check_row(game_list) == 1 and check_diag(game_list) == 1 and check_column(game_list) == 1:
     return 1
   else:
-    return 0 
+    return 0
+
+def game(game_map: list, name_value: dict) -> None:
+  """
+  game_map: игровая карта
+  name_value: словарь с именами пользователей и тем, чем они ходят
+  Функция завершает свою работу, когда один из пользователей выиграл, то есть
+  после каждого хода пользователя, функция проверяет игровую карту на победителя,
+  если победитель не определен, тогда игра продолжается
+  """
+  name_value = start_game(name_value)
+  while check_win(game_map) != 1:
+    first_go = random.randint(0, 1)
+    if first_go == 0:
+      print(f"Ходит игрок{list(name_value.keys())[first_go]}")
+      move = input()
+      while move != name_value[name_value[list(name_value.keys())[first_go]]]:
+        print(f"Введите свое значение{name_value[name_value[list(name_value.keys())[first_go]]]}")
+        move = input()
+    else:
+      print(f"Ходит игрок{list(name_value.keys())[first_go]}")
+      move = input()
+      while move != name_value[name_value[list(name_value.keys())[first_go]]]:
+        print(f"Введите свое значение{name_value[name_value[list(name_value.keys())[first_go]]]}")
+        move = input()
+        #TODO
